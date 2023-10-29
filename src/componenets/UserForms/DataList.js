@@ -5,7 +5,7 @@ import DataItem from './DataItem'
 
 const DataList = (props) => {
 
-    console.log('props.items' + JSON.stringify(props.items))
+    // console.log('props.items' + JSON.stringify(props.items))
     return (
         <ul className="user-list">
             {props.items.map(items => (
@@ -15,7 +15,7 @@ const DataList = (props) => {
                     key={items.id}
                     id={items.id}
                     name = {items.name}
-                    age = {items.age}
+                    Password = {items.Password}
                 >
                     {/* {items.name} */}
                 </DataItem>

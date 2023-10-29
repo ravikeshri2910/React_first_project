@@ -4,28 +4,29 @@ import './App.css';
 import UserForm from './componenets/UserForms/UserForm';
 import DataList from './componenets/UserForms/DataList';
 import ErrorHandling from './componenets/UI/ErrorHandling'
+
 function App() {
 
   const [userDetais, setUserDetais] = useState([
-    // { name: 'Do all exercises!', age:31 , id: 'g1' },
+    // { name: 'Do all exercises!', Password:31 , id: 'g1' },
   ]);
 
   const [error, setError] = useState()
 
   const addDataHandler = enteredText => {
 
-    if(enteredText.name.trim().length === 0 || enteredText.age.trim().length === 0 ){
+    if(enteredText.name.trim().length === 0 || enteredText.Password.trim().length === 0 ){
       setError({
         title : 'Invalid Input',
-        message : 'Pleals Enter a valid Name and age (non-empty value)'
+        message : 'Pleals Enter a valid Name and Password (non-empty value)'
       })
       return
     }
 
-    if((enteredText.age) < 1){
+    if((enteredText.Password) < 1){
       setError({
         title : 'Invalid Input',
-        message : 'Please Enter valid age  '
+        message : 'Please Enter valid Password  '
       })
       return;
     }
@@ -38,11 +39,14 @@ function App() {
   const errorHandler = () =>{
     setError(null)
   }
+  const errorHandler2 = () =>{
+    setError(null)
+  }
   console.log(userDetais)
   return (
-    <div>
-      {error && <ErrorHandling onConfirm = {errorHandler} header = {error.title} message = {error.message}/>}
-      <div>
+    <React.Fragment>
+      {error && <ErrorHandling onConfirm = {errorHandler} header = {error.title} message = {error.message} check = {errorHandler2}/>}
+      
         <div id='user-form'>
           <UserForm onAddData={addDataHandler} />
         </div>
@@ -50,8 +54,8 @@ function App() {
           {/* list */}
           <DataList items={userDetais} />
         </div>
-      </div>
-    </div>
+     
+    </React.Fragment>
   );
 }
 
