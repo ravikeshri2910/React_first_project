@@ -1,37 +1,33 @@
-import React, { useState } from 'react'
+import React, { useState , useRef } from 'react'
 
 import './UserForm.css'
 import Button from '../UI/Button'
 import Wrapper from '../Helper/Wrapper'
 
 const UserForm = (props) => {
-    const [userName, setUserName] = useState('')
-    const [userPassword, setUserPassword] = useState('')
-    
 
-    const userNameHandler = (event)=>{
-        setUserName(event.target.value)
-    }
-    const userPasswordHandler = (event)=>{
-        setUserPassword(event.target.value)
-    
-    }
+    const userNameRef = useRef()
+    const userPasswordRef = useRef()
+    const userCollegeRef = useRef()
 
     
     const formSubmitHandler = (event) =>{
         event.preventDefault();
 
         const userData = {
-            name : userName,
-            Password : userPassword,
+            name : userNameRef.current.value,
+            Password : userPasswordRef.current.value,
+            College : userCollegeRef.current.value,
             id : Math.random().toString()
         }
-        // console.log(userData)
+        console.log(userData)
 
         props.onAddData(userData)
-       
-        setUserName('')
-        setUserPassword('')
+
+        userNameRef.current.value = ""
+        userPasswordRef.current.value = ""
+        userCollegeRef.current.value = ""
+    
     }
 
 
@@ -40,9 +36,11 @@ const UserForm = (props) => {
         <form onSubmit={formSubmitHandler}  >
             <div className='form-control' >
                 <label >User name</label>
-                <input value={userName} type="text" onChange={userNameHandler} />
+                <input type="text" ref={userNameRef} />
                 <label >Password</label>
-                <input value={userPassword} type="text" onChange={userPasswordHandler}/>
+                <input type="text" ref={userPasswordRef}/>
+                <label >College Name</label>
+                <input type="text" ref={userCollegeRef}/>
             </div>
             <Button title = {'Submit'} type="submit">Add Goal</Button>
         </form>

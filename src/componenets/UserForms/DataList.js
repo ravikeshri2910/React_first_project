@@ -16,6 +16,7 @@ const DataList = (props) => {
                     id={items.id}
                     name = {items.name}
                     Password = {items.Password}
+                    College = {items.College}
                 >
                     {/* {items.name} */}
                 </DataItem>

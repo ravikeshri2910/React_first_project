@@ -2,12 +2,20 @@ import React from "react";
 
 import './DataItem.css'
 
-const DataItem = (props) =>{
+const DataItem = (props) => {
 
-   return( <li className="user-item">{props.name + ' (' + props.Password + ')'}
+  return (
+    <React.Fragment>
+      <div className="user-item">
+        <li>{'Name :- ' + props.name}</li>
+        <li>{'Password :- ' + props.Password}</li>
+        <li>{'College :- ' + props.College}</li>
+      </div>
+    </React.Fragment>
 
-  </li>)
-    
+
+  )
+
 }
 
 export default DataItem
